@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-public class PricingPlanService {
+public class PricingPlanBasedHostService {
 
     private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
 

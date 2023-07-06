@@ -1,5 +1,6 @@
 package com.example.demo.price;
 
+import com.example.demo.request.RequestInfo;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Refill;
 
@@ -20,7 +21,7 @@ public enum PricingPlan {
     }
 
     Bandwidth getLimit() {
-        return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofHours(1)));
+        return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofMinutes(1)));
     }
 
     public int bucketCapacity() {
@@ -38,5 +39,9 @@ public enum PricingPlan {
             return BASIC;
         }
         return FREE;
+    }
+
+    static PricingPlan resolvePlanFromRequestInfo(RequestInfo requestInfo) {
+        return resolvePlanFromApiKey(requestInfo.getApiKey());
     }
 }
