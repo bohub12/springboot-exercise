@@ -14,6 +14,6 @@ public class TestController {
 
     @GetMapping("/test")
     public ResponseEntity<?> test(Member member) {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(member.toString());
     }
 }
