@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.JwtAuthorization;
 import com.example.demo.domain.Member;
 import com.example.demo.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ public class MemberController {
     private final JwtUtils jwtUtils;
 
     @GetMapping("")
-    public ResponseEntity<?> get(Member member) {
+    public ResponseEntity<?> get(@JwtAuthorization Member member) {
         return ResponseEntity.ok().body(member.toString());
     }
 

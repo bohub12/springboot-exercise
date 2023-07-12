@@ -1,5 +1,6 @@
 package com.example.demo.resolver;
 
+import com.example.demo.domain.JwtAuthorization;
 import com.example.demo.domain.Member;
 import com.example.demo.jwt.JwtUtils;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +22,8 @@ public class MemberArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().equals(Member.class);
+        return parameter.getParameterType().equals(Member.class)
+                && parameter.hasParameterAnnotation(JwtAuthorization.class);
     }
 
     @Override
