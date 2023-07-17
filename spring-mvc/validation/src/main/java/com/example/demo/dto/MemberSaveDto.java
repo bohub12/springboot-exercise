@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @ToString
-@Getter
+//@Getter
 @Builder
 @AllArgsConstructor
 public class MemberSaveDto {
