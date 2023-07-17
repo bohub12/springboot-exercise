@@ -15,8 +15,8 @@ public class MyExceptionHandler {
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
-//    @InitBinder
-//    private void activateDirectFieldAccess(DataBinder dataBinder) {
-//        dataBinder.initDirectFieldAccess();
-//    }
+    @InitBinder
+    private void activateDirectFieldAccess(DataBinder dataBinder) {
+        dataBinder.initDirectFieldAccess();
+    }
 }
