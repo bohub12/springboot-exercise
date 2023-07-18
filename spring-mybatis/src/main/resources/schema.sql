@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `ARTICLE` (
+    `id` INTEGER PRIMARY KEY,
+    `title` VARCHAR(100) NOT NULL,
+    `author` VARCHAR(100) NOT NULL,
+    `content_type` VARCHAR(100) NOT NULL,
+    `content` TEXT NOT NULL
+);
