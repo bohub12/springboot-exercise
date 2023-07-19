@@ -21,7 +21,7 @@ public class ArticleController {
     public ResponseEntity<?> getArticle(@RequestParam(name = "id") Long id) {
         Article article = articleMapper.getArticle(id);
         if (article == null)
-            return ResponseEntity.ok().build();
+            return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok().body(article);
     }
