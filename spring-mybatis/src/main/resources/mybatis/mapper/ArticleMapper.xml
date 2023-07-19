@@ -36,4 +36,12 @@
             VALUES (#{article.title}, #{article.author}, #{article.articleContent.contentType}, #{article.articleContent.content});
     </insert>
 
+    <update id="updateArticle" parameterType="com.example.demo.article.domain.Article">
+        UPDATE article
+        SET title = #{title},
+            content = #{articleContent.content},
+            content_type = #{articleContent.contentType}
+        WHERE id = #{id}
+    </update>
+
 </mapper>

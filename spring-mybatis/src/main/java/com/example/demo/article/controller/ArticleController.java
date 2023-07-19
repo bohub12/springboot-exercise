@@ -1,6 +1,7 @@
 package com.example.demo.article.controller;
 
 import com.example.demo.article.domain.Article;
+import com.example.demo.article.dto.ArticlePatchDto;
 import com.example.demo.article.dto.ArticleSaveDto;
 import com.example.demo.article.mapper.ArticleMapper;
 import lombok.Getter;
@@ -28,6 +29,14 @@ public class ArticleController {
     public ResponseEntity<?> saveArticle(@RequestBody ArticleSaveDto body) {
         articleMapper.saveArticle(Article.from(body));
 
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("")
+    public ResponseEntity<?> updateArticle(@RequestBody ArticlePatchDto body) {
+        Article articleToUpdate = Article.from(body);
+
+        articleMapper.updateArticle(articleToUpdate);
         return ResponseEntity.ok().build();
     }
 }

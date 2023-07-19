@@ -1,5 +1,6 @@
 package com.example.demo.article.domain;
 
+import com.example.demo.article.dto.ArticlePatchDto;
 import com.example.demo.article.dto.ArticleSaveDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,17 @@ public class Article {
                 .articleContent(new ArticleContent(
                         body.getContent(),
                         body.getContentType()
+                ))
+                .build();
+    }
+
+    public static Article from(ArticlePatchDto body) {
+        return Article.builder()
+                .title(body.getTitle())
+                .author(null)
+                .articleContent(new ArticleContent(
+                        body.getContent(),
+                        null
                 ))
                 .build();
     }

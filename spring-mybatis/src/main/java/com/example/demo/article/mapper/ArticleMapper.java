@@ -12,4 +12,5 @@ public interface ArticleMapper {
     Article getArticle(@Param("id") Long id);
 
     void saveArticle(@Param("article") Article article);
+    void updateArticle(Article article);
 }
