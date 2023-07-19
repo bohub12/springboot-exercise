@@ -39,4 +39,10 @@ public class ArticleController {
         articleMapper.updateArticle(articleToUpdate);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("")
+    public ResponseEntity<?> deleteArticle(@RequestParam(name = "id") Long id) {
+        articleMapper.deleteArticle(id);
+        return ResponseEntity.ok().build();
+    }
 }
