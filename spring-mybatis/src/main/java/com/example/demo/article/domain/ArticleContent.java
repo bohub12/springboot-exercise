@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleContent {
-    private ArticleContentType contentType;
     private String content;
+    private ArticleContentType contentType;
 }

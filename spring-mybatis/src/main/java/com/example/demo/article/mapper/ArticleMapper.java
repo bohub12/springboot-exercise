@@ -10,4 +10,6 @@ public interface ArticleMapper {
 
 //    @Select("SELECT * FROM ARTICLE WHERE id = #{id}")
     Article getArticle(@Param("id") Long id);
+
+    void saveArticle(@Param("article") Article article);
 }

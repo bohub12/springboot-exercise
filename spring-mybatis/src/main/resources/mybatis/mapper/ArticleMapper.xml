@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.article.mapper.ArticleMapper">
+
     <resultMap id="article" type="com.example.demo.article.domain.Article">
         <id property="id" column="id" />
         <result property="title" column="title" />
@@ -26,8 +27,13 @@
             author,
             content_type,
             content
-        FROM ARTICLE a
-        WHERE id = #{id}
+        FROM article a
+        WHERE id = #{id};
     </select>
+
+    <insert id="saveArticle" parameterType="map" useGeneratedKeys="true" keyColumn="id">
+        INSERT INTO article (title, author, content_type, content)
+            VALUES (#{article.title}, #{article.author}, #{article.articleContent.contentType}, #{article.articleContent.content});
+    </insert>
 
 </mapper>

@@ -1,14 +1,12 @@
 package com.example.demo.article.controller;
 
 import com.example.demo.article.domain.Article;
+import com.example.demo.article.dto.ArticleSaveDto;
 import com.example.demo.article.mapper.ArticleMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/articles")
@@ -24,5 +22,12 @@ public class ArticleController {
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok().body(article);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> saveArticle(@RequestBody ArticleSaveDto body) {
+        articleMapper.saveArticle(Article.from(body));
+
+        return ResponseEntity.ok().build();
     }
 }
