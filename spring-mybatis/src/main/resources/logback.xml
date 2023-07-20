@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.example.demo.article.mapper.ArticleMapper">
+        <level value="trace"/>
+    </logger>
+
+    <logger name="com.example.demo.member.mapper.MemberMapper">
+        <level value="trace"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="stdout"/>
+    </root>
+
+</configuration>

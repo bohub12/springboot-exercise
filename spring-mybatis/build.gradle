@@ -24,6 +24,13 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+
+	// logging
+	implementation 'ch.qos.logback:logback-classic:1.4.8'
+
+	// test 환경에서만 로그 남기려면 아래처럼
+	// testImplementation 'ch.qos.logback:logback-classic:1.4.8'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
