@@ -1,8 +1,21 @@
 DROP TABLE IF EXISTS `article`;
+DROP TABLE IF EXISTS `member`;
+
+CREATE TABLE IF NOT EXISTS `member` (
+    `id` TEXT PRIMARY KEY,
+    `name` VARCHAR(250) NOT NULL
+);
+
+
 CREATE TABLE IF NOT EXISTS `article` (
     `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
+    `member_id` TEXT NOT NULL,
     `title` VARCHAR(100) NOT NULL,
     `author` VARCHAR(100) NOT NULL,
     `content_type` VARCHAR(100) NOT NULL,
     `content` TEXT NOT NULL
 );
+
+ALTER TABLE `article`
+ADD FOREIGN KEY (member_id)
+REFERENCES `member`(id) ON UPDATE CASCADE ON DELETE CASCADE ;

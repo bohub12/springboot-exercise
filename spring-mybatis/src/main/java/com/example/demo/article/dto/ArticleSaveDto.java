@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleSaveDto {
+    private String memberId;
     private String title;
     private String author;
     private String content;

@@ -3,6 +3,7 @@
 <configuration>
     <mappers>
         <mapper resource="../mapper/ArticleMapper.xml"/>
+        <mapper resource="../mapper/MemberMapper.xml" />
     </mappers>
 
 </configuration>

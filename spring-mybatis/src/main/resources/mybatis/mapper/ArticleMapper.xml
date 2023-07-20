@@ -6,6 +6,7 @@
 
     <resultMap id="article" type="com.example.demo.article.domain.Article">
         <id property="id" column="id" />
+        <result property="memberId" column="member_id" />
         <result property="title" column="title" />
         <result property="author" column="author" />
         <association property="articleContent" javaType="ArticleContent" resultMap="articleContent" />
@@ -23,6 +24,7 @@
     <select id="getArticle" resultMap="article">
         SELECT
             id,
+            member_id,
             title,
             author,
             content_type,
@@ -32,15 +34,14 @@
     </select>
 
     <insert id="saveArticle" parameterType="map" useGeneratedKeys="true" keyColumn="id">
-        INSERT INTO article (title, author, content_type, content)
-            VALUES (#{article.title}, #{article.author}, #{article.articleContent.contentType}, #{article.articleContent.content});
+        INSERT INTO article (member_id, title, author, content_type, content)
+            VALUES (#{article.memberId}, #{article.title}, #{article.author}, #{article.articleContent.contentType}, #{article.articleContent.content});
     </insert>
 
     <update id="updateArticle" parameterType="com.example.demo.article.domain.Article">
         UPDATE article
         SET title = #{title},
-            content = #{articleContent.content},
-            content_type = #{articleContent.contentType}
+            content = #{articleContent.content}
         WHERE id = #{id}
     </update>
 

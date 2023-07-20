@@ -29,20 +29,20 @@ public class ArticleController {
     public ResponseEntity<?> saveArticle(@RequestBody ArticleSaveDto body) {
         articleMapper.saveArticle(Article.from(body));
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("ok");
     }
 
     @PatchMapping("")
     public ResponseEntity<?> updateArticle(@RequestBody ArticlePatchDto body) {
         Article articleToUpdate = Article.from(body);
-
+        System.out.println(articleToUpdate.toString());
         articleMapper.updateArticle(articleToUpdate);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("ok");
     }
 
     @DeleteMapping("")
     public ResponseEntity<?> deleteArticle(@RequestParam(name = "id") Long id) {
         articleMapper.deleteArticle(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("ok");
     }
 }
