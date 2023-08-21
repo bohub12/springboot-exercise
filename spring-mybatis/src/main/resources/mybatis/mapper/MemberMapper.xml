@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.member.mapper.MemberMapper">
+
+    <resultMap id="member" type="com.example.demo.member.domain.Member" autoMapping="true">
+        <id property="id" column="id" />
+        <collection property="articleList" column="id" javaType="java.util.ArrayList" select="getArticleListOfMember" ofType="com.example.demo.article.domain.Article"/>
+    </resultMap>
+
+    <resultMap id="article" type="com.example.demo.article.domain.Article" autoMapping="true">
+        <id property="id" column="id" />
+        <association property="articleContent" javaType="ArticleContent" resultMap="articleContent" />
+    </resultMap>
+
+    <resultMap id="articleContent" type="com.example.demo.article.domain.ArticleContent" autoMapping="true">
+        <association property="contentType" resultMap="articleContentType" />
+    </resultMap>
+
+    <resultMap id="articleContentType" type="com.example.demo.article.domain.ArticleContentType">
+        <result property="contentType" column="content_type" />
+    </resultMap>
+
+    <select id="getArticleListOfMember" resultMap="article">
+        SELECT
+            id,
+            member_id,
+            title,
+            author,
+            content_type,
+            content
+        FROM article a
+        WHERE member_id = #{id};
+    </select>
+
+    <select id="getMember" resultMap="member">
+        SELECT id, name
+        FROM member m
+        WHERE id = #{id};
+    </select>
+
+    <insert id="saveMember" parameterType="map" keyColumn="id">
+        INSERT INTO member (id, name)
+        VALUES (#{id}, #{name});
+    </insert>
+
+    <update id="updateMember" parameterType="com.example.demo.member.domain.Member">
+        UPDATE member
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteMember" parameterType="map">
+        DELETE member
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
