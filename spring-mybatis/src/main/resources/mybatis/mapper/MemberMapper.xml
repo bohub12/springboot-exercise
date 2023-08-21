@@ -4,23 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.member.mapper.MemberMapper">
 
-    <resultMap id="member" type="com.example.demo.member.domain.Member">
+    <resultMap id="member" type="com.example.demo.member.domain.Member" autoMapping="true">
         <id property="id" column="id" />
-        <result property="name" column="name" />
         <collection property="articleList" column="id" javaType="java.util.ArrayList" select="getArticleListOfMember" ofType="com.example.demo.article.domain.Article"/>
     </resultMap>
 
-    <resultMap id="article" type="com.example.demo.article.domain.Article">
+    <resultMap id="article" type="com.example.demo.article.domain.Article" autoMapping="true">
         <id property="id" column="id" />
-        <result property="memberId" column="member_id" />
-        <result property="title" column="title" />
-        <result property="author" column="author" />
         <association property="articleContent" javaType="ArticleContent" resultMap="articleContent" />
     </resultMap>
 
-    <resultMap id="articleContent" type="com.example.demo.article.domain.ArticleContent">
-        <result property="content" column="content" />
-        <association property="contentType" javaType="ArticleContentType" resultMap="articleContentType" />
+    <resultMap id="articleContent" type="com.example.demo.article.domain.ArticleContent" autoMapping="true">
+        <association property="contentType" resultMap="articleContentType" />
     </resultMap>
 
     <resultMap id="articleContentType" type="com.example.demo.article.domain.ArticleContentType">

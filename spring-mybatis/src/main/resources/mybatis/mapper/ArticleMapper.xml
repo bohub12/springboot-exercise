@@ -4,20 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.article.mapper.ArticleMapper">
 
-    <resultMap id="article" type="com.example.demo.article.domain.Article">
+    <resultMap id="article" type="com.example.demo.article.domain.Article" autoMapping="true">
         <id property="id" column="id" />
-        <result property="memberId" column="member_id" />
-        <result property="title" column="title" />
-        <result property="author" column="author" />
         <association property="articleContent" javaType="ArticleContent" resultMap="articleContent" />
     </resultMap>
 
-    <resultMap id="articleContent" type="ArticleContent">
-        <result property="content" column="content" />
+    <resultMap id="articleContent" type="com.example.demo.article.domain.ArticleContent" autoMapping="true">
         <association property="contentType" javaType="ArticleContentType" resultMap="articleContentType" />
     </resultMap>
 
-    <resultMap id="articleContentType" type="ArticleContentType">
+    <resultMap id="articleContentType" type="com.example.demo.article.domain.ArticleContentType" autoMapping="true">
         <result property="contentType" column="content_type" />
     </resultMap>
 
