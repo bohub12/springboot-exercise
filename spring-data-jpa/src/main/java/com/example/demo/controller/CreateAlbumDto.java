@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.joined.JoinedAlbum;
 import com.example.demo.domain.singletable.SingleTableAlbum;
 import com.example.demo.domain.tableperclass.TablePerClassAlbum;
 import lombok.AllArgsConstructor;
@@ -21,5 +22,9 @@ public class CreateAlbumDto {
 
     public TablePerClassAlbum toTablePerClassEntity() {
         return new TablePerClassAlbum(name, price, artist);
+    }
+
+    public JoinedAlbum toJoinedEntity() {
+        return new JoinedAlbum(name, price, artist);
     }
 }
