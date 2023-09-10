@@ -9,3 +9,4 @@ A repository to study, implement, and deep-dive into Spring Boot technologies
 - [Spring MVC - argument resolver](./spring-mvc/argument-resolver/)
 - [MyBatis](./mybatis/)
 - [monitoring - prometheus & grafana](./monitoring/prometheus_grafana/)
+- [Spring Data JPA - Inheritance](./spring-data-jpa/jpa-inheritance/)
