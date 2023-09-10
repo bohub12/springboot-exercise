@@ -26,6 +26,36 @@
     - 자식 엔티티가 매핑한 컬럼은 모두 null 허용해야한다
     - 한 테이블에 모두 저장하므로 테이블이 의도치않게 커질 수 있다. 즉 변경과 확장에 취약해지게 된다.
 
+```java
+// Item.java
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "DTYPE")
+public abstract class Item {
+
+    @Id @GeneratedValue
+    private long id;
+
+    private String name;
+    private int price;
+}
+
+// Album.java
+@Entity
+@DiscriminatorValue("A")
+public class Album extends Item {
+
+  private String artist;
+}
+
+// Book.java
+@Entity
+@DiscriminatorValue("B")
+public class Book extends Item {
+
+  private String author;
+}
+```
 
 ### 3. 구현클래스마다 테이블 (`InheritanceType.TABLE_PER_CLASS`)
 - 애플리케이션에서 부모 엔티티는 추상클래스로 두고, 자식 엔티티마다 테이블을 만드는 방식이다
