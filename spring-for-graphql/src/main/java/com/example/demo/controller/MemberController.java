@@ -26,7 +26,7 @@ public class MemberController {
     }
 
     @PostMapping
-    public Long save(@RequestBody CreateMemberRequestDto body) {
-        return repository.save(body.toEntity()).getId();
+    public Member save(@RequestBody CreateMemberRequestDto body) {
+        return repository.save(body.toEntity());
     }
 }

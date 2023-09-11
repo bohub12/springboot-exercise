@@ -1,0 +1,18 @@
+type Member {
+    id: ID!
+    name: String!
+    role: MemberRole!
+    age: Int
+}
+
+enum MemberRole {
+    NORMAL
+    ADMIN
+}
+
+
+input CreateMemberRequestDto {
+    name: String!
+    role: MemberRole!
+    age: Int
+}
