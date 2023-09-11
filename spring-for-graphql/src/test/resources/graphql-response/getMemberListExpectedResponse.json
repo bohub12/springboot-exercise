@@ -1,0 +1,31 @@
+{
+  "data": {
+    "getMemberList": [
+      {
+        "name": "member1",
+        "age": 10,
+        "role": "NORMAL"
+      },
+      {
+        "name": "member2",
+        "age": 20,
+        "role": "NORMAL"
+      },
+      {
+        "name": "member3",
+        "age": 30,
+        "role": "NORMAL"
+      },
+      {
+        "name": "member4",
+        "age": 40,
+        "role": "ADMIN"
+      },
+      {
+        "name": "member5",
+        "age": 50,
+        "role": "ADMIN"
+      }
+    ]
+  }
+}

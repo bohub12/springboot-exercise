@@ -1,0 +1,7 @@
+query getMember ($id: Long!) {
+    getMember(id: $id) {
+        name
+        age
+        role
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "data": {
+    "getMember": {
+      "name": "member1",
+      "age": 10,
+      "role": "NORMAL"
+    }
+  }
+}

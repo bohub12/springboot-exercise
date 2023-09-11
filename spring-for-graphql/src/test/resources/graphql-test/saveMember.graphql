@@ -1,0 +1,7 @@
+mutation saveMember ($body: CreateMemberRequestDto!) {
+    saveMember(body: $body) {
+        age
+        name
+        role
+    }
+}

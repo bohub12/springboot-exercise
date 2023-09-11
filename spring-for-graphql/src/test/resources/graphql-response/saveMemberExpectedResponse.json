@@ -1,0 +1,9 @@
+{
+  "data": {
+    "saveMember": {
+      "age": 15,
+      "name": "멤버",
+      "role": "ADMIN"
+    }
+  }
+}
