@@ -1,0 +1,3 @@
+type Mutation {
+    saveMember(body: CreateMemberRequestDto!): Member # Controller에 @MutationMapping 메서드명과 같아야 합니다.
+}

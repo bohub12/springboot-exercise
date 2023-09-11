@@ -1,0 +1,6 @@
+type Member {
+    id: ID!
+    name: String!
+    role: MemberRole!
+    age: Int
+}

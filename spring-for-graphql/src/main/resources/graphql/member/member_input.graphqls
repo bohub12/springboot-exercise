@@ -1,0 +1,5 @@
+input CreateMemberRequestDto {
+    name: String!
+    role: MemberRole!
+    age: Int
+}
