@@ -1,4 +1,4 @@
-package com.example.demo.member;
+package com.example.demo.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,4 +18,10 @@ public class Member {
     @Enumerated(value = EnumType.STRING)
     private MemberRole role;
     private int age;
+
+    public Member(String name, MemberRole role, int age) {
+        this.name = name;
+        this.role = role;
+        this.age = age;
+    }
 }

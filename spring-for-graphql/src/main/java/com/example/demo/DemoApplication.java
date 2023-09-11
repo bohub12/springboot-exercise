@@ -1,13 +1,12 @@
 package com.example.demo;
 
-import com.example.demo.member.Member;
-import com.example.demo.member.MemberRepository;
-import com.example.demo.member.MemberRole;
+import com.example.demo.domain.Member;
+import com.example.demo.repository.MemberRepository;
+import com.example.demo.domain.MemberRole;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class DemoApplication {
