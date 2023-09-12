@@ -1,0 +1,4 @@
+type Query {
+    getMember(id: Long!): Member # Controller에 @QueryMapping 메서드명과 같아야 합니다.
+    getMemberList: [Member]
+}

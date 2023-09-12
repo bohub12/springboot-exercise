@@ -1,0 +1,9 @@
+{
+  "data": {
+    "updateMember": {
+      "name": "updatedMember",
+      "role": "ADMIN",
+      "age": 100
+    }
+  }
+}

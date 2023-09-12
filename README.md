@@ -10,3 +10,4 @@ A repository to study, implement, and deep-dive into Spring Boot technologies
 - [MyBatis](./mybatis/)
 - [monitoring - prometheus & grafana](./monitoring/prometheus_grafana/)
 - [Spring Data JPA - Inheritance](./spring-data-jpa/jpa-inheritance/)
+- [Spring for GraphQL](./spring-for-graphql/)

@@ -1,0 +1,21 @@
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+      # graphiql을 true를 설정해 주면 localhost:8080/graphiql (Default path)을 통해 graphql 쿼리를 테스트가 가능합니다
+      # 이 방법 말고도 IntelliJ에 GraphQL 플러그인을 설치해서 IntelliJ에서 직접 테스트도 가능하며 Postman 으로도 가능합니다
+    schema:
+      printer:
+        enabled: true                                   # jpa 의 show-sql 같이 graphql 쿼리를 출력해 줍니다.
+      locations: classpath:graphql/**/                  # 해당 프로퍼티로 .graphqls 파일의 스캔범위를 지정할 수 있다
+  h2:
+    console:
+      path: "/h2-console"
+      enabled: true
+  datasource:
+    url: "jdbc:h2:mem:testDB"
+    username: bo
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

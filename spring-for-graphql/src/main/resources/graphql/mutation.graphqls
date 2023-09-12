@@ -1,0 +1,7 @@
+type Mutation {
+    saveMember(body: CreateMemberRequestDto!): Member # Controller에 @MutationMapping 메서드명과 같아야 합니다.
+
+    updateMember(body: UpdateMemberRequestDto!): Member
+
+    updateField(id: Long!, name: String, role: MemberRole, age: Int): Member
+}

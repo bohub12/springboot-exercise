@@ -1,0 +1,12 @@
+input CreateMemberRequestDto {
+    name: String!
+    role: MemberRole!
+    age: Int
+}
+
+input UpdateMemberRequestDto {
+    id: Long!
+    name: String!
+    role: MemberRole!
+    age: Int
+}

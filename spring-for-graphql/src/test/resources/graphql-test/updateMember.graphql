@@ -1,0 +1,7 @@
+mutation updateMember($body: UpdateMemberRequestDto!) {
+    updateMember(body: $body) {
+        name
+        role
+        age
+    }
+}
