@@ -112,6 +112,94 @@ class MemberGraphQLControllerTest {
                 .matchesJson(expected(documentName));
     }
 
+    @Test
+    void updateMember_thenReturnResponse1() {
+        long id = repository.findAll().stream().findFirst().orElseThrow().getId();
+        String name = "updatedMember";
+        MemberRole role = MemberRole.ADMIN;
+        int age = 100;
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("name", name);
+        map.put("role", role);
+        map.put("age", age);
+
+        String documentName = "updateMember";
+
+        graphQlTester.documentName(documentName)
+                .variable("body", map)
+                .execute()
+                .path("$")
+                .matchesJson(expected(documentName));
+    }
+
+    @Test
+    void updateMember_thenReturnResponse2() {
+        long id = repository.findAll().stream().findFirst().orElseThrow().getId();
+        String name = "updatedMember";
+        MemberRole role = MemberRole.ADMIN;
+        int age = 100;
+
+        String query = String.format("""
+                mutation {
+                  updateMember(body: {
+                    id: %d
+                    name: "%s"
+                    role: %s
+                    age: %d
+                  }) {
+                    id
+                    name
+                    role
+                    age
+                  }
+                }
+                """, id, name, role.name(), age);
+
+        Member member = graphQlTester.document(query)
+                .execute()
+                .path("data.updateMember")
+                .entity(Member.class)
+                .get();
+
+        assertThat(member).isNotNull();
+        assertThat(member.getName()).isEqualTo(name);
+        assertThat(member.getRole()).isEqualTo(MemberRole.ADMIN);
+        assertThat(member.getAge()).isEqualTo(100);
+    }
+
+    @Test
+    void updateField_thenReturnResponse1() {
+        Member findMember = repository.findAll().stream().findFirst().orElseThrow();
+        String name = "updatedMember";
+
+        String query = String.format("""
+                mutation {
+                  updateField (
+                    id: %d
+                    name: "%s"
+                  ) {
+                    id
+                    name
+                    role
+                    age
+                  }
+                }
+                """, findMember.getId(), name);
+
+        Member member = graphQlTester.document(query)
+                .execute()
+                .path("data.updateField")
+                .entity(Member.class)
+                .get();
+
+        assertThat(member).isNotNull();
+        assertThat(member.getName()).isEqualTo(name);
+        assertThat(member.getRole()).isEqualTo(findMember.getRole());         // 수정X
+        assertThat(member.getAge()).isEqualTo(findMember.getAge());           // 수정X
+    }
+
     @SneakyThrows
     public static String expected(String fileName) {
         Path path = Paths.get("src/test/resources/graphql-response/" + fileName + "ExpectedResponse.json");

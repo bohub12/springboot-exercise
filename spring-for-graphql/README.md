@@ -14,13 +14,39 @@ mutation {
     }
 }
 
+mutation {
+    updateMember(body: {
+        id: 1
+        name:"updatedMember"
+        role: ADMIN
+        age: 100
+    }) {
+        id
+        name
+        role
+        age
+    }
+}
+
+mutation {
+    updateField (
+        id: 1
+        name:"updatedMember"
+    ) {
+        id
+        name
+        role
+        age
+    }
+}
+
 query {
-  getMember(id:1) {
-    id
-    name
-    age
-    role
-  }
+    getMember(id:1) {
+        id
+        name
+        age
+        role
+    }
 }
 
 query {

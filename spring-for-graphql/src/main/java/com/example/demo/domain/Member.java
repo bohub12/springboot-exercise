@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.util.ObjectUtils;
 
 @Entity
 @Getter
@@ -25,5 +26,17 @@ public class Member {
         this.name = name;
         this.role = role;
         this.age = age;
+    }
+
+    public void update(String name, MemberRole role, int age) {
+        this.name = name;
+        this.role = role;
+        this.age = age;
+    }
+
+    public void updateIfNotNull(String name, MemberRole role, Integer age) {
+        if (!ObjectUtils.isEmpty(name)) this.name = name;
+        if (!ObjectUtils.isEmpty(role)) this.role = role;
+        if (!ObjectUtils.isEmpty(age)) this.age = age;
     }
 }
