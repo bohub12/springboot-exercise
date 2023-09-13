@@ -40,10 +40,10 @@ SpringBoot 서버에 `GraphQL` 을 구현해보겠습니다. 원래 SpringBoot �
 
 코드의 주석에도 적혀있다싶이 GraphQL에는 @RequestBody, @RequestParam, @PathVariable 이 없습니다. `@Argument`로 통합됩니다.
 
+그리고 사용되지 않는 데이터를 조회해오거나 로직을 타는 일은 없어도 되기에 오버페칭 문제를 해결할 수 있도록 GraphQL은 DataFetchingFieldSelectionSet 을 통해 응답 schema 구조를 미리 알고 수행할 로직을 지정해줄 수 있습니다.
 ```java
-
-@RestController
-@RequestMapping("/graphql")
+@Slf4j
+@Controller
 @RequiredArgsConstructor
 public class MemberGraphQLController {
 
@@ -78,7 +78,16 @@ public class MemberGraphQLController {
 
     // @QueryMapping도 @GetMapping과 같은 어노테이션입니다
     @QueryMapping
-    public Member getMember(@Argument Long id) {
+    public Member getMember(@Argument Long id, DataFetchingFieldSelectionSet selectionSet) {
+        if (selectionSet.contains("id"))                // 응답 schema 에 id가 있다면 true 아니면 false
+            log.info("query contain [id] schema");
+        if (selectionSet.contains("name"))
+            log.info("query contain [name] schema");
+        if (selectionSet.contains("role"))
+            log.info("query contain [role] schema");
+        if (selectionSet.contains("age"))
+            log.info("query contain [age] schema");
+
         return repository.findById(id).orElseThrow();
     }
 

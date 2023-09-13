@@ -5,18 +5,21 @@ import com.example.demo.controller.dto.UpdateMemberRequestDto;
 import com.example.demo.domain.Member;
 import com.example.demo.domain.MemberRole;
 import com.example.demo.repository.MemberRepository;
+import graphql.schema.DataFetchingFieldSelectionSet;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/graphql")
+@Slf4j
+@Controller
 @RequiredArgsConstructor
 public class MemberGraphQLController {
 
@@ -51,7 +54,16 @@ public class MemberGraphQLController {
 
     // @QueryMapping도 @GetMapping과 같은 어노테이션입니다
     @QueryMapping
-    public Member getMember(@Argument Long id) {
+    public Member getMember(@Argument Long id, DataFetchingFieldSelectionSet selectionSet) {
+        if (selectionSet.contains("id"))                // 응답 schema 에 id가 있다면 true 아니면 false
+            log.info("response schema contain [id] schema");
+        if (selectionSet.contains("name"))
+            log.info("response schema contain [name] schema");
+        if (selectionSet.contains("role"))
+            log.info("response schema contain [role] schema");
+        if (selectionSet.contains("age"))
+            log.info("response schema contain [age] schema");
+
         return repository.findById(id).orElseThrow();
     }
 
