@@ -1,10 +1,10 @@
-package com.example.demo.repository;
+package com.example.demo.repository.member;
 
-import com.example.demo.domain.Member;
+import com.example.demo.domain.member.Member;
 
 import java.util.List;
 
 public interface MemberQueryDslRepository {
     List<Member> findManyByFirstnameIsKimOrPark();
-    int calculateMemberRows();
+    Long calculateMemberRows();
 }
