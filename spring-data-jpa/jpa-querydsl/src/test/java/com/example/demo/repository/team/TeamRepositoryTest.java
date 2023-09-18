@@ -7,6 +7,7 @@ import com.example.demo.domain.team.Team;
 import com.example.demo.repository.config.TestConfig;
 import com.example.demo.repository.member.MemberRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class TeamRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @Autowired
+    @PersistenceContext
     EntityManager em;
 
     @BeforeEach

@@ -17,12 +17,12 @@ public class MemberController {
 
     @GetMapping("count")
     public Long memberCount() {
-        return repository.calculateMemberRows();
+        return repository.calculateEntireRows();
     }
 
     @GetMapping("firstname-is-kim-or-park")
     public List<Member> findMemberKimOrPark() {
-        return repository.findManyByFirstnameIsKimOrPark();
+        return repository.findMembersByFirstnameIsKimOrPark();
     }
 
     @PostMapping("")
