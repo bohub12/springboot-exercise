@@ -16,11 +16,9 @@ import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Import(TestConfig.class)
 @DataJpaTest
-class TeamQueryDslRepositoryImplTest {
+class TeamRepositoryTest {
 
     @Autowired
     TeamRepository teamRepository;
