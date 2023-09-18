@@ -47,17 +47,13 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-//// === QueryDsl 빌드 옵션 (선택) ===
-//def querydslDir = "$buildDir/generated/querydsl"
-//
-//sourceSets {
-//	main.java.srcDirs += [ querydslDir ]
-//}
-//
-//tasks.withType(JavaCompile).configureEach {
-//	options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
-//}
-//
-//clean.doLast {
-//	file(querydslDir).deleteDir()
-//}
+// === QueryDsl 빌드 옵션 (선택) ===
+def querydslDir = "$buildDir/generated/querydsl"
+
+sourceSets {
+	main.java.srcDirs += [ querydslDir ]
+}
+
+clean.doLast {
+	file(querydslDir).deleteDir()
+}
