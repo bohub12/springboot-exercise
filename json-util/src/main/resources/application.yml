@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: "jdbc:h2:mem:testDB"
+    username: "bo"
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+#  # json? ??? property ??? ?? ?????? ?? ?? (??? false? ??? property ????)
+#  jackson:
+#    deserialization:
+#      fail-on-unknown-properties: true
