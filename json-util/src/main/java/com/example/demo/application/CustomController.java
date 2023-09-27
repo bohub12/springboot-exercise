@@ -16,6 +16,10 @@ import com.example.demo.application.dto.jsoninclude.JsonIncludeNonNullResponse;
 import com.example.demo.application.dto.jsonview.JsonViewResponse;
 import com.example.demo.application.dto.jsonview.View.DetailResponse;
 import com.example.demo.application.dto.jsonview.View.SummaryResponse;
+import com.example.demo.domain.Board;
+import com.example.demo.domain.Comment;
+import com.example.demo.infrastructure.BoardRepository;
+import com.example.demo.infrastructure.CommentRepository;
 import com.example.demo.infrastructure.MemberRepository;
 import com.example.demo.infrastructure.TeamRepository;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -35,6 +39,8 @@ public class CustomController {
 
     private final MemberRepository memberRepository;
     private final TeamRepository teamRepository;
+    private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     @GetMapping("/property")
     public JsonPropertyResponseData getDataUsingJsonProperty() {
@@ -116,5 +122,14 @@ public class CustomController {
     }
 
 
+    @GetMapping("/managed-reference")
+    public List<Board> getDataUsingJsonManagedReference() {
+        return boardRepository.findAll();
+    }
+
+    @GetMapping("/back-reference")
+    public List<Comment> getDataUsingJsonBackReference() {
+        return commentRepository.findAll();
+    }
 
 }
