@@ -8,8 +8,14 @@ import com.example.demo.application.dto.MemberJsonIgnorePropertyResponse;
 import com.example.demo.application.dto.MemberJsonIgnorePropertySettersResponse;
 import com.example.demo.application.dto.MemberJsonIgnoreResponse;
 import com.example.demo.application.dto.MemberJsonIgnoreTypeResponse;
+import com.example.demo.application.dto.jsoninclude.JsonIncludeAlwaysResponse;
+import com.example.demo.application.dto.jsoninclude.JsonIncludeNonAbsentResponse;
+import com.example.demo.application.dto.jsoninclude.JsonIncludeNonDefaultResponse;
+import com.example.demo.application.dto.jsoninclude.JsonIncludeNonEmptyResponse;
+import com.example.demo.application.dto.jsoninclude.JsonIncludeNonNullResponse;
 import com.example.demo.infrastructure.MemberRepository;
 import com.example.demo.infrastructure.TeamRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +72,31 @@ public class CustomController {
     @GetMapping("/ignore-type")
     public List<MemberJsonIgnoreTypeResponse> getDataUsingJsonIgnoreType() {
         return memberRepository.findAll().stream().map(MemberJsonIgnoreTypeResponse::new).toList();
+    }
+
+    @GetMapping("/include-always")
+    public JsonIncludeAlwaysResponse getDataUsingJsonIncludeByAlways() {
+        return JsonIncludeAlwaysResponse.create();
+    }
+
+    @GetMapping("/include-non-null")
+    public JsonIncludeNonNullResponse getDataUsingJsonIncludeByNonNull() {
+        return JsonIncludeNonNullResponse.create();
+    }
+
+    @GetMapping("/include-non-absent")
+    public JsonIncludeNonAbsentResponse getDataUsingJsonIncludeByNonAbsent() {
+        return JsonIncludeNonAbsentResponse.create();
+    }
+
+    @GetMapping("/include-non-empty")
+    public JsonIncludeNonEmptyResponse getDataUsingJsonIncludeByNonEmpty() {
+        return JsonIncludeNonEmptyResponse.create();
+    }
+
+    @GetMapping("/include-non-default")
+    public JsonIncludeNonDefaultResponse getDataUsingJsonIncludeByNonDefault() {
+        return JsonIncludeNonDefaultResponse.create();
     }
 
 
