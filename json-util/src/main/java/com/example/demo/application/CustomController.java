@@ -13,8 +13,12 @@ import com.example.demo.application.dto.jsoninclude.JsonIncludeNonAbsentResponse
 import com.example.demo.application.dto.jsoninclude.JsonIncludeNonDefaultResponse;
 import com.example.demo.application.dto.jsoninclude.JsonIncludeNonEmptyResponse;
 import com.example.demo.application.dto.jsoninclude.JsonIncludeNonNullResponse;
+import com.example.demo.application.dto.jsonview.JsonViewResponse;
+import com.example.demo.application.dto.jsonview.View.DetailResponse;
+import com.example.demo.application.dto.jsonview.View.SummaryResponse;
 import com.example.demo.infrastructure.MemberRepository;
 import com.example.demo.infrastructure.TeamRepository;
+import com.fasterxml.jackson.annotation.JsonView;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -97,6 +101,18 @@ public class CustomController {
     @GetMapping("/include-non-default")
     public JsonIncludeNonDefaultResponse getDataUsingJsonIncludeByNonDefault() {
         return JsonIncludeNonDefaultResponse.create();
+    }
+
+    @GetMapping("/view-summary")
+    @JsonView(value = {SummaryResponse.class})
+    public JsonViewResponse getDataUsingJsonViewBySummary() {
+        return JsonViewResponse.create();
+    }
+
+    @GetMapping("/view-detail")
+    @JsonView(value = {DetailResponse.class})
+    public JsonViewResponse getDataUsingJsonViewByDetail() {
+        return JsonViewResponse.create();
     }
 
 
