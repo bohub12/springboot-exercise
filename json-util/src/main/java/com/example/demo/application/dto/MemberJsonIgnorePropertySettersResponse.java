@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * id, name 역직렬화 안됨.
+ * id, name 직렬화 안됨.
  * response : [ {"age" : 1}, {..}, .. ]
  */
 @Getter

@@ -1,7 +1,11 @@
-> 직렬화와 역직렬화
-> - 직렬화 : 객체 > json
-> - 역직렬화 : json > 객체
+# 직렬화와 역직렬화 
+- 직렬화 : 객체의 직렬화(serialization)란 그 객체의 현재 상태를 파일에 저장하거나 네트워크를 전송하기 위해(스트림, 송수신) 일련의 바이트로 변환하는 과정을 말한다. 직렬화의 주된 목적은 객체를 상태 그대로 저장하여 필요할 때 다시 생성하는 것이다.  
+  - ex) object > json
+- 역직렬화 : 객체의 역직렬화(deserialization)이란, 반대로 바이트 코드를 객체로 변환해주는 과정을 말한다.  
+  - ex) json > object
 
+
+# Json 관련 어노테이션
 ## JsonProperty & JsonNaming
 
 - JsonProperty : 멤버변수 대상으로 json 필드 네이밍 지정
@@ -16,7 +20,7 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException:
     No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer
 ```
 
-ManyToOne 어노테이션으로 LAZY하게 연관관계를 가지는 객체를 가져오게 되면, 객체를 직렬화하지 못하고 해당 에러가 발생한다.
+ManyToOne 어노테이션으로 LAZY하게 연관관계를 가지는 객체를 직렬화하게되면, 해당 에러가 발생한다.
 
 연관관계를 EAGER로 바꾸지 않고 간단히 해결하려면, @JsonIgnore 어노테이션을 필드에 달아주면 된다. 이렇게하면 해당 필드는 직렬화 과정에서 무시되고 에러가 발생하지 않는다.
 
@@ -37,7 +41,7 @@ ManyToOne 어노테이션으로 LAZY하게 연관관계를 가지는 객체를 �
 
     - 기본적으로 `deserialization: fail-on-unknown-properties: false` 으로 설정되어 있는데 이는 역직렬화할 때, 필요없는 필드가 있으면 무시되는 설정값이다.
 
-    - 그래서 만약 저 값이 true로 설정되어 있다면, 필요없는 필드가 오면 에러가 발생하게 된다.
+    - 그래서 만약 저 값이 true로 설정되어 있을 때, 필요없는 데이터가 들어와서 역직렬화하게 되면 에러가 발생하게 된다.
 
 
 ## JsonIgnoreType
@@ -94,3 +98,29 @@ Json으로 직렬화할 때, 필드에 특정 값(null, "", ... 등) 일 경우 
 - 당연히 Json 직렬화에도 순환참조로 생기는 문제를 막을 수 있다.
 
 - 이 방식으로 하기보다는, 컨트롤러 단에서 DTO 리턴해주는 것이 순환참조 문제를 막을 수 있을 뿐더러 JPA라는 기술에 의존하지 않음으로써 장점을 가진다.
+
+## JsonSerialize
+- Json 포맷으로 직렬화를 할 때, 어떻게 직렬화할건지를 정할 수 있는 어노테이션이다.
+  - jackson 라이브러리에서 제공해주는 직렬화 방식이 아닌 특정 필드만 커스텀하게 직렬화를 하고 싶다면, 아래처럼 명시해주면 된다
+```java
+public class MyObject { 
+    @JsonSerialize(using = CustomSerializer.class)
+    private LocalDate date;
+    // ...
+}
+```
+  - 특정 타입의 모든 필드에 적용하고 싶다면 아래처럼 `@JsonComponent`로 등록해준다
+```java
+@JsonComponent
+public class CustomSerializer extends JsonSerializer<LocalDate> {
+  private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+  @Override
+  public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+    gen.writeString(formatter.format(value));
+  }
+}
+```
+
+# _Reference_
+- https://inpa.tistory.com/entry/JAVA-%E2%98%95-%EC%A7%81%EB%A0%AC%ED%99%94Serializable-%EC%99%84%EB%B2%BD-%EB%A7%88%EC%8A%A4%ED%84%B0%ED%95%98%EA%B8%B0
+- https://siyoon210.tistory.com/185

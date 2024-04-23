@@ -10,6 +10,7 @@ import lombok.Data;
 public class MemberJsonIgnoreTypeResponse {
     private Long id;
     private CustomType customType;
+
     public MemberJsonIgnoreTypeResponse(Member member) {
         this.id = member.getId();
         this.customType = new CustomType(member.getName(), member.getAge());

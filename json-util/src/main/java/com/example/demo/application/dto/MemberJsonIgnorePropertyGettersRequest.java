@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * id, name 직렬화 안됨
+ * <div>id, name 역직렬화 안됨</div>
  * request 로 받아도 id, name은 null, 0 으로 설정됨
  */
 @Getter

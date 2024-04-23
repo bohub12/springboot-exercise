@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
  *  snake(userName > user_name) = SnakeCaseStrategy.class
- *  camel case - lower(userName > userName) = LowerCamelCaseStrategy.class
- *  camel case - upper(userName > UserName) = UpperCamelCaseStrategy.class
- *  lower case(userName > username) = LowerCaseStrategy.class
+ *  <li>camel case - lower(userName > userName) = LowerCamelCaseStrategy.class</li>
+ *  <li>camel case - upper(userName > UserName) = UpperCamelCaseStrategy.class</li>
+ *  <li>lower case(userName > username) = LowerCaseStrategy.class</li>
  */
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)

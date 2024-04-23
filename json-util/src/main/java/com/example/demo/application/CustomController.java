@@ -38,7 +38,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomController {
 
     private final MemberRepository memberRepository;
-    private final TeamRepository teamRepository;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
