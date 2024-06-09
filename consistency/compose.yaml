@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mariadb:
+    image: mariadb:11.3.2
+    ports:
+      - "13306:3306"
+    environment:
+      - TZ="Asia/Seoul"
+      - MARIADB_ROOT_PASSWORD=password
+      - MARIADB_DATABASE=coupon_db
+    restart: on-failure
+  redis:
+    image: redis:7.2.4-alpine
+    ports:
+      - "16379:6379"
+    restart: on-failure

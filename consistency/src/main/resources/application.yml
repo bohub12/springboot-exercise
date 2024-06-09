@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: coupon-concurrency
+  profiles:
+    default: local
+  jpa:
+    open-in-view: false
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+  docker:
+    compose:
+      enabled: false
+server:
+  error:
+    include-stacktrace: never
+    include-message: always
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  docker:
+    compose:
+      enabled: true
+  main:
+    datasource:
+      hikari:
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbc-url: jdbc:mariadb://localhost:13306/coupon_db
+        username: root
+        password: password
+        connection-timeout: 10000
+        maximum-pool-size: 10
+  lock:
+    datasource:
+      hikari:
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbc-url: jdbc:mariadb://localhost:13306/coupon_db
+        username: root
+        password: password
+        connection-timeout: 10000
+        maximum-pool-size: 100
+  data:
+    redis:
+      host: localhost
+      port: 16379
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  main:
+    datasource:
+      hikari:
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbc-url: jdbc:mariadb://localhost:43306/coupon_db
+        username: root
+        password: 1234
+        connection-timeout: 10000
+        maximum-pool-size: 10
+  lock:
+    datasource:
+      hikari:
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbc-url: jdbc:mariadb://localhost:43306/coupon_db
+        username: root
+        password: 1234
+        connection-timeout: 10000
+        maximum-pool-size: 100
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      username:
+      password:
